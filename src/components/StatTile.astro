@@ -1,0 +1,23 @@
+---
+import type { Stat } from '../data/profile';
+
+interface Props {
+  stat: Stat;
+}
+
+const { stat } = Astro.props;
+---
+
+<div class="bg-brand-surface rounded-2xl p-6 border border-brand-border flex flex-col gap-1">
+  <span class="text-3xl sm:text-4xl font-bold text-brand-accent leading-none">
+    {stat.value}
+  </span>
+  <span class="text-sm font-medium text-brand-text mt-1">
+    {stat.label}
+  </span>
+  {stat.context && (
+    <span class="text-xs text-brand-muted">
+      {stat.context}
+    </span>
+  )}
+</div>

@@ -1,0 +1,25 @@
+---
+import type { Hobby } from '../data/profile';
+
+interface Props {
+  hobby: Hobby;
+}
+
+const { hobby } = Astro.props;
+
+const emojiMap: Record<string, string> = {
+  'Surfing':             '🏄',
+  'Running':             '🏃',
+  'Basketball':          '🏀',
+  'Weightlifting':       '🏋️',
+  'Philosophy of mind':  '🧠',
+  'Piano':               '🎹',
+};
+
+const emoji = emojiMap[hobby.name] ?? '✦';
+---
+
+<div class="flex flex-col items-center gap-2 p-4 rounded-xl bg-brand-surface border border-brand-border">
+  <span class="text-3xl leading-none" aria-hidden="true">{emoji}</span>
+  <span class="text-xs text-brand-muted text-center leading-snug">{hobby.name}</span>
+</div>

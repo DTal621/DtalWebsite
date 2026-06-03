@@ -15,15 +15,7 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
   </head>
-  <body>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/work">Work</a>
-      <a href="/writing">Writing</a>
-      <a href="/about">About</a>
-    </nav>
-    <main>
-      <slot />
-    </main>
+  <body class="bg-brand-bg text-brand-text font-sans antialiased">
+    <slot />
   </body>
 </html>
