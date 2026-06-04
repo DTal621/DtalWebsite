@@ -1,11 +1,31 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
+import PageSection from '../components/PageSection.astro';
+import RoleCard from '../components/RoleCard.astro';
+import { profile } from '../data/profile';
 ---
 
-<BaseLayout title="Work">
+<BaseLayout title={`Work — ${profile.name}`}>
   <Nav />
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
   <section class="max-w-4xl mx-auto px-4 pt-20 pb-16">
-    <h1 class="text-4xl font-bold text-brand-accent">Work</h1>
+    <h1 class="text-4xl sm:text-5xl font-bold text-brand-accent tracking-tight leading-tight">
+      Work
+    </h1>
+    <p class="mt-4 text-lg text-brand-muted max-w-2xl leading-relaxed">
+      A record of the roles, products, and protocols I've built.
+    </p>
   </section>
+
+  <!-- ── Experience ────────────────────────────────────────────────────── -->
+  <PageSection heading="Experience" first>
+    <div class="flex flex-col gap-6">
+      {profile.roles.map(role => (
+        <RoleCard role={role} />
+      ))}
+    </div>
+  </PageSection>
+
 </BaseLayout>
