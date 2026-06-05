@@ -6,7 +6,6 @@ import PageSection from '../components/PageSection.astro';
 import PostListItem from '../components/PostListItem.astro';
 import { profile } from '../data/profile';
 
-// Blog posts — sorted newest-first
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
 );
@@ -24,7 +23,7 @@ function formatDate(dateStr: string): string {
 <BaseLayout title={`Writing — ${profile.name}`}>
   <Nav />
 
-  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <!-- ── Hero (above fold — not animated) ─────────────────────────────── -->
   <section class="max-w-4xl mx-auto px-4 pt-20 pb-16">
     <h1 class="font-display text-4xl sm:text-5xl font-medium text-text tracking-tight leading-tight">
       Writing
@@ -38,13 +37,15 @@ function formatDate(dateStr: string): string {
   <PageSection heading="blog" first>
     {posts.length > 0 ? (
       <ul class="divide-y divide-border">
-        {posts.map(post => (
-          <PostListItem
-            title={post.data.title}
-            meta={post.data.publishDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
-            url={`/blog/${post.id}`}
-            summary={post.data.description}
-          />
+        {posts.map((post, i) => (
+          <div data-fade data-delay={i * 50}>
+            <PostListItem
+              title={post.data.title}
+              meta={post.data.publishDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+              url={`/blog/${post.id}`}
+              summary={post.data.description}
+            />
+          </div>
         ))}
       </ul>
     ) : (
@@ -56,14 +57,16 @@ function formatDate(dateStr: string): string {
   <PageSection heading="external writing">
     {articles.length > 0 ? (
       <ul class="divide-y divide-border">
-        {articles.map(article => (
-          <PostListItem
-            title={article.title}
-            meta={`${article.platform} · ${formatDate(article.publishedAt)}`}
-            url={article.url}
-            summary={article.summary}
-            external
-          />
+        {articles.map((article, i) => (
+          <div data-fade data-delay={i * 50}>
+            <PostListItem
+              title={article.title}
+              meta={`${article.platform} · ${formatDate(article.publishedAt)}`}
+              url={article.url}
+              summary={article.summary}
+              external
+            />
+          </div>
         ))}
       </ul>
     ) : (
@@ -72,3 +75,8 @@ function formatDate(dateStr: string): string {
   </PageSection>
 
 </BaseLayout>
+
+<script>
+  import { initFadeIn } from '../scripts/motion';
+  initFadeIn();
+</script>
