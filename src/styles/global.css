@@ -1,10 +1,70 @@
+/* ── Fonts (self-hosted via @fontsource, no CDN) ─────────────────────────── */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
 @import "tailwindcss";
 
-@theme {
-  --color-brand-bg:      #ffffff;
-  --color-brand-surface: #f8fafc;
-  --color-brand-accent:  #1e293b;
-  --color-brand-text:    #0f172a;
-  --color-brand-muted:   #64748b;
-  --color-brand-border:  #e2e8f0;
+/* ── Runtime theme tokens ─────────────────────────────────────────────────
+   These plain CSS custom properties are scoped to [data-theme] on <html>.
+   Switching the attribute instantly swaps all colours site-wide.
+   ──────────────────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] {
+  --bg:      #0A0E12;
+  --surface: #151B21;
+  --border:  #232C34;
+  --text:    #EAEEF1;
+  --muted:   #8A95A0;
+  --accent:  #2DD4A7;
+  --amber:   #E5A862;
+}
+
+[data-theme="light"] {
+  --bg:      #FFFFFF;
+  --surface: #F4F6F8;
+  --border:  #E3E8EC;
+  --text:    #0E1417;
+  --muted:   #5B6770;
+  --accent:  #0E9E78;
+  --amber:   #B97A1E;
+}
+
+/* ── Tailwind design-time aliases ─────────────────────────────────────────
+   @theme inline tells Tailwind to generate utility classes (bg-bg,
+   text-accent, border-border, etc.) that resolve to these CSS vars at
+   runtime. The `inline` keyword means the vars are NOT inlined at build
+   time — they stay as var() references so they update when data-theme
+   changes.
+
+   We also keep brand-* aliases so existing page-body classes keep working
+   during this transition pass.
+   ──────────────────────────────────────────────────────────────────────── */
+
+@theme inline {
+  /* New token names (used in Nav, BaseLayout, and future pages) */
+  --color-bg:      var(--bg);
+  --color-surface: var(--surface);
+  --color-border:  var(--border);
+  --color-text:    var(--text);
+  --color-muted:   var(--muted);
+  --color-accent:  var(--accent);
+  --color-amber:   var(--amber);
+
+  /* Legacy brand-* aliases — keep existing page-body classes rendering
+     correctly until the full restyle pass */
+  --color-brand-bg:      var(--bg);
+  --color-brand-surface: var(--surface);
+  --color-brand-border:  var(--border);
+  --color-brand-text:    var(--text);
+  --color-brand-muted:   var(--muted);
+  --color-brand-accent:  var(--accent);
+
+  /* Font families */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans:    'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'Courier New', monospace;
 }
