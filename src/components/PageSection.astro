@@ -9,6 +9,7 @@ const { heading, first = false } = Astro.props;
 ---
 
 <section
+  data-fade
   class:list={[
     'max-w-4xl mx-auto px-4 py-16',
     !first && 'border-t border-border',
@@ -19,3 +20,8 @@ const { heading, first = false } = Astro.props;
   </h2>
   <slot />
 </section>
+
+<script>
+  import { initFadeIn } from '../scripts/motion';
+  initFadeIn();
+</script>

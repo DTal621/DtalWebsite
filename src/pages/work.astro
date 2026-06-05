@@ -9,7 +9,7 @@ import { profile } from '../data/profile';
 <BaseLayout title={`Work — ${profile.name}`}>
   <Nav />
 
-  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <!-- ── Hero (above fold — not animated) ─────────────────────────────── -->
   <section class="max-w-4xl mx-auto px-4 pt-20 pb-16">
     <h1 class="font-display text-4xl sm:text-5xl font-medium text-text tracking-tight leading-tight">
       Work
@@ -22,10 +22,17 @@ import { profile } from '../data/profile';
   <!-- ── Experience ────────────────────────────────────────────────────── -->
   <PageSection heading="experience" first>
     <div class="flex flex-col gap-5">
-      {profile.roles.map(role => (
-        <RoleCard role={role} />
+      {profile.roles.map((role, i) => (
+        <div data-fade data-delay={i * 80}>
+          <RoleCard role={role} />
+        </div>
       ))}
     </div>
   </PageSection>
 
 </BaseLayout>
+
+<script>
+  import { initFadeIn } from '../scripts/motion';
+  initFadeIn();
+</script>

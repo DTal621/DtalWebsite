@@ -14,7 +14,7 @@ const ctaLinks = about.ctaLinkLabels
 <BaseLayout title={`About — ${profile.name}`}>
   <Nav />
 
-  <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+  <!-- ── Hero (above fold — not animated) ─────────────────────────────── -->
   <section class="max-w-4xl mx-auto px-4 pt-20 pb-12">
     <h1 class="font-display text-4xl sm:text-5xl font-medium text-text tracking-tight leading-tight">
       About
@@ -24,8 +24,9 @@ const ctaLinks = about.ctaLinkLabels
   <!-- ── Intro prose ───────────────────────────────────────────────────── -->
   <section class="max-w-4xl mx-auto px-4 pb-16 border-t border-border pt-12">
     <div class="max-w-[65ch]">
-      {about.intro.map(paragraph => (
-        <p class="font-sans text-base leading-[1.75] text-text mb-5 last:mb-0">
+      {about.intro.map((paragraph, i) => (
+        <p class="font-sans text-base leading-[1.75] text-text mb-5 last:mb-0"
+           data-fade data-delay={i * 80}>
           {paragraph}
         </p>
       ))}
@@ -34,21 +35,24 @@ const ctaLinks = about.ctaLinkLabels
 
   <!-- ── Currently exploring ───────────────────────────────────────────── -->
   <PageSection heading="currently exploring">
-    <p class="font-sans text-base leading-[1.75] text-text max-w-[65ch]">
+    <p class="font-sans text-base leading-[1.75] text-text max-w-[65ch]"
+       data-fade>
       {about.currentlyExploring}
     </p>
   </PageSection>
 
   <!-- ── Off the clock ─────────────────────────────────────────────────── -->
   <PageSection heading="off the clock">
-    <p class="font-sans text-base leading-[1.75] text-text max-w-[65ch]">
+    <p class="font-sans text-base leading-[1.75] text-text max-w-[65ch]"
+       data-fade>
       {about.offTheClock}
     </p>
   </PageSection>
 
   <!-- ── CTA ───────────────────────────────────────────────────────────── -->
   <PageSection heading={about.cta.heading}>
-    <div class="bg-surface border border-border rounded-xl p-8 max-w-[65ch]">
+    <div class="bg-surface border border-border rounded-xl p-8 max-w-[65ch]"
+         data-fade>
       <p class="font-sans text-base leading-[1.75] text-text">
         {about.cta.body}
       </p>
@@ -66,3 +70,8 @@ const ctaLinks = about.ctaLinkLabels
   </PageSection>
 
 </BaseLayout>
+
+<script>
+  import { initFadeIn } from '../scripts/motion';
+  initFadeIn();
+</script>

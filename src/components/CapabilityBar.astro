@@ -13,9 +13,16 @@ const { capability } = Astro.props;
     {capability.area}
   </span>
   <div class="flex-1 h-0.5 bg-border relative rounded-full">
+    <!-- width set to target initially; JS overrides to 0 then animates to target -->
     <div
       class="absolute inset-y-0 left-0 bg-accent rounded-full"
       style={`width: ${capability.decorativeWidth}%`}
+      data-bar-fill={capability.decorativeWidth}
     />
   </div>
 </div>
+
+<script>
+  import { initBarFill } from '../scripts/motion';
+  initBarFill();
+</script>
