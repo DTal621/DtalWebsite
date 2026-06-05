@@ -66,6 +66,7 @@ export interface Capability {
 
 export interface Article {
   title: string;
+  platform: string;    // e.g. "Medium", "Mirror", "Substack"
   url: string;
   publishedAt: string; // ISO date string, e.g. "2024-03-15"
   summary: string;
@@ -278,6 +279,7 @@ export const profile: Profile = {
   articles: [
     // {
     //   title: "How Wormhole NTT cuts partner onboarding by 73%",
+    //   platform: "Mirror",
     //   url: "https://example.com/article-slug",
     //   publishedAt: "2024-09-01",
     //   summary: "A walkthrough of the NTT playbook and the integrations it standardised.",

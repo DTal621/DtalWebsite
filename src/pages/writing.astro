@@ -1,11 +1,74 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
+import PageSection from '../components/PageSection.astro';
+import PostListItem from '../components/PostListItem.astro';
+import { profile } from '../data/profile';
+
+// Blog posts — sorted newest-first
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+
+const articles = profile.articles;
+
+function formatDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'short',
+    year:  'numeric',
+  });
+}
 ---
 
-<BaseLayout title="Writing">
+<BaseLayout title={`Writing — ${profile.name}`}>
   <Nav />
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
   <section class="max-w-4xl mx-auto px-4 pt-20 pb-16">
-    <h1 class="text-4xl font-bold text-brand-accent">Writing</h1>
+    <h1 class="text-4xl sm:text-5xl font-bold text-brand-accent tracking-tight leading-tight">
+      Writing
+    </h1>
+    <p class="mt-4 text-lg text-brand-muted max-w-2xl leading-relaxed">
+      Blog posts and external writing on crypto, product, and whatever's on my mind.
+    </p>
   </section>
+
+  <!-- ── Blog ──────────────────────────────────────────────────────────── -->
+  <PageSection heading="Blog" first>
+    {posts.length > 0 ? (
+      <ul class="divide-y divide-brand-border">
+        {posts.map(post => (
+          <PostListItem
+            title={post.data.title}
+            meta={post.data.publishDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+            url={`/blog/${post.id}`}
+            summary={post.data.description}
+          />
+        ))}
+      </ul>
+    ) : (
+      <p class="text-sm text-brand-muted">No posts yet.</p>
+    )}
+  </PageSection>
+
+  <!-- ── External writing ──────────────────────────────────────────────── -->
+  <PageSection heading="External writing">
+    {articles.length > 0 ? (
+      <ul class="divide-y divide-brand-border">
+        {articles.map(article => (
+          <PostListItem
+            title={article.title}
+            meta={`${article.platform} · ${formatDate(article.publishedAt)}`}
+            url={article.url}
+            summary={article.summary}
+            external
+          />
+        ))}
+      </ul>
+    ) : (
+      <p class="text-sm text-brand-muted">No external articles yet.</p>
+    )}
+  </PageSection>
+
 </BaseLayout>
