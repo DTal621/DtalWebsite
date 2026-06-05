@@ -25,6 +25,7 @@ export interface Role {
   location: string;
   period: string;
   achievements: RoleAchievement[];
+  links?: Link[]; // e.g. { label: "Launch post", url: "https://..." }
 }
 
 // ─── Community ───────────────────────────────────────────────────────────────
@@ -162,6 +163,9 @@ export const profile: Profile = {
         },
         { text: "Portal bridge asset onboarding — 70+ listings" },
       ],
+      links: [
+        // { label: "Launch post", url: "https://..." },
+      ],
     },
     {
       title: "Head of Product & BD",
@@ -182,6 +186,7 @@ export const profile: Profile = {
         { text: "+32% MoM deposits via UX redesign" },
         { text: "Led 4 BD hires" },
       ],
+      links: [],
     },
     {
       title: "Product Manager",
@@ -196,6 +201,7 @@ export const profile: Profile = {
         { text: "Top NPS across IBM Hybrid Cloud (Jul 2020)" },
         { text: "Accelerator mentor" },
       ],
+      links: [],
     },
     {
       title: "Quantitative Analyst",
@@ -208,6 +214,7 @@ export const profile: Profile = {
         },
         { text: "+10% on proprietary forecasting algorithm" },
       ],
+      links: [],
     },
     {
       title: "Investment Intern",
@@ -219,6 +226,7 @@ export const profile: Profile = {
         { text: "Investor ranking reports for US expansion" },
         { text: "Quarterly portfolio reporting" },
       ],
+      links: [],
     },
   ],
 
