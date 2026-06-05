@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import PageSection from '../components/PageSection.astro';
 import StatTile from '../components/StatTile.astro';
-import CapabilityChip from '../components/CapabilityChip.astro';
+import CapabilityBar from '../components/CapabilityBar.astro';
 import HobbyTile from '../components/HobbyTile.astro';
 import { profile } from '../data/profile';
 ---
@@ -13,16 +13,16 @@ import { profile } from '../data/profile';
 
   <!-- ── Hero ─────────────────────────────────────────────────────────── -->
   <section class="max-w-4xl mx-auto px-4 pt-20 pb-16">
-    <h1 class="text-4xl sm:text-5xl font-bold text-brand-accent tracking-tight leading-tight">
+    <h1 class="font-display text-4xl sm:text-5xl font-medium text-text tracking-tight leading-tight">
       {profile.name}
     </h1>
-    <p class="mt-4 text-lg sm:text-xl text-brand-muted max-w-2xl leading-relaxed">
+    <p class="font-sans mt-4 text-lg sm:text-xl text-muted max-w-2xl leading-relaxed">
       {profile.tagline}
     </p>
   </section>
 
   <!-- ── Stats ─────────────────────────────────────────────────────────── -->
-  <PageSection heading="By the numbers" first>
+  <PageSection heading="by the numbers" first>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {profile.stats.map(stat => (
         <StatTile stat={stat} />
@@ -31,17 +31,17 @@ import { profile } from '../data/profile';
   </PageSection>
 
   <!-- ── Skills ────────────────────────────────────────────────────────── -->
-  <PageSection heading="Skills">
-    <div class="flex flex-wrap gap-3">
+  <PageSection heading="skills">
+    <div class="flex flex-col gap-5">
       {profile.capabilities.map(cap => (
-        <CapabilityChip capability={cap} />
+        <CapabilityBar capability={cap} />
       ))}
     </div>
   </PageSection>
 
   <!-- ── Off-chain ──────────────────────────────────────────────────────── -->
-  <PageSection heading="Off-chain">
-    <div class="grid grid-cols-3 sm:grid-cols-6 gap-4">
+  <PageSection heading="off-chain">
+    <div class="grid grid-cols-3 sm:grid-cols-6 gap-3">
       {profile.hobbies.map(hobby => (
         <HobbyTile hobby={hobby} />
       ))}

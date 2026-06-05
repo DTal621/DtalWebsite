@@ -59,7 +59,8 @@ export interface Military {
 // ─── Capabilities ────────────────────────────────────────────────────────────
 
 export interface Capability {
-  area: string; // e.g. "Product strategy"
+  area: string;           // e.g. "Product strategy"
+  decorativeWidth: number; // 0–100, used as bar fill % (no score implied)
 }
 
 // ─── Articles & Projects (typed but empty — fill later) ──────────────────────
@@ -287,10 +288,10 @@ export const profile: Profile = {
   ],
 
   capabilities: [
-    { area: "Product strategy" },
-    { area: "Ecosystem BD & partnerships" },
-    { area: "On-chain infrastructure" },
-    { area: "Team leadership" },
+    { area: "Product strategy",           decorativeWidth: 95 },
+    { area: "Ecosystem BD & partnerships", decorativeWidth: 90 },
+    { area: "On-chain infrastructure",    decorativeWidth: 88 },
+    { area: "Team leadership",            decorativeWidth: 85 },
   ],
 
   // ── Fill these arrays later ──────────────────────────────────────────────

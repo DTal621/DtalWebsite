@@ -8,15 +8,15 @@ interface Props {
 const { stat } = Astro.props;
 ---
 
-<div class="bg-brand-surface rounded-2xl p-6 border border-brand-border flex flex-col gap-1">
-  <span class="text-3xl sm:text-4xl font-bold text-brand-accent leading-none">
+<div class="bg-surface border border-border rounded-xl p-6 flex flex-col gap-1">
+  <span class="font-mono text-3xl sm:text-4xl font-medium text-accent leading-none">
     {stat.value}
   </span>
-  <span class="text-sm font-medium text-brand-text mt-1">
+  <span class="font-mono text-xs lowercase tracking-wide text-muted mt-2">
     {stat.label}
   </span>
   {stat.context && (
-    <span class="text-xs text-brand-muted">
+    <span class="font-mono text-xs text-muted opacity-60 mt-0.5">
       {stat.context}
     </span>
   )}

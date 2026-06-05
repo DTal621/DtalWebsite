@@ -11,10 +11,10 @@ const { heading, first = false } = Astro.props;
 <section
   class:list={[
     'max-w-4xl mx-auto px-4 py-16',
-    !first && 'border-t border-brand-border',
+    !first && 'border-t border-border',
   ]}
 >
-  <h2 class="text-xs font-semibold uppercase tracking-widest text-brand-muted mb-8">
+  <h2 class="font-mono text-xs lowercase tracking-widest text-muted mb-8">
     {heading}
   </h2>
   <slot />
