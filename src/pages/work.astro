@@ -11,17 +11,17 @@ import { profile } from '../data/profile';
 
   <!-- ── Hero ─────────────────────────────────────────────────────────── -->
   <section class="max-w-4xl mx-auto px-4 pt-20 pb-16">
-    <h1 class="text-4xl sm:text-5xl font-bold text-brand-accent tracking-tight leading-tight">
+    <h1 class="font-display text-4xl sm:text-5xl font-medium text-text tracking-tight leading-tight">
       Work
     </h1>
-    <p class="mt-4 text-lg text-brand-muted max-w-2xl leading-relaxed">
+    <p class="font-sans mt-4 text-lg text-muted max-w-2xl leading-relaxed">
       A record of the roles, products, and protocols I've built.
     </p>
   </section>
 
   <!-- ── Experience ────────────────────────────────────────────────────── -->
-  <PageSection heading="Experience" first>
-    <div class="flex flex-col gap-6">
+  <PageSection heading="experience" first>
+    <div class="flex flex-col gap-5">
       {profile.roles.map(role => (
         <RoleCard role={role} />
       ))}
