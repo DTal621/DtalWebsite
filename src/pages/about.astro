@@ -1,11 +1,65 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
+import PageSection from '../components/PageSection.astro';
+import { profile } from '../data/profile';
+
+const { about } = profile;
+
+// Resolve CTA links from the single source of truth in profile.links
+const ctaLinks = about.ctaLinkLabels
+  .map(label => profile.links.find(l => l.label === label))
+  .filter(Boolean);
 ---
 
-<BaseLayout title="About">
+<BaseLayout title={`About — ${profile.name}`}>
   <Nav />
-  <section class="max-w-4xl mx-auto px-4 pt-20 pb-16">
-    <h1 class="text-4xl font-bold text-brand-accent">About</h1>
+
+  <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+  <section class="max-w-4xl mx-auto px-4 pt-20 pb-12">
+    <h1 class="text-4xl sm:text-5xl font-bold text-brand-accent tracking-tight leading-tight">
+      About
+    </h1>
   </section>
+
+  <!-- ── Intro prose ───────────────────────────────────────────────────── -->
+  <section class="max-w-4xl mx-auto px-4 pb-16 border-t border-brand-border pt-12">
+    {about.intro.map(paragraph => (
+      <p class="text-base leading-relaxed text-brand-text mb-5 last:mb-0">
+        {paragraph}
+      </p>
+    ))}
+  </section>
+
+  <!-- ── Currently exploring ───────────────────────────────────────────── -->
+  <PageSection heading="Currently exploring">
+    <p class="text-base leading-relaxed text-brand-text max-w-2xl">
+      {about.currentlyExploring}
+    </p>
+  </PageSection>
+
+  <!-- ── Off the clock ─────────────────────────────────────────────────── -->
+  <PageSection heading="Off the clock">
+    <p class="text-base leading-relaxed text-brand-text max-w-2xl">
+      {about.offTheClock}
+    </p>
+  </PageSection>
+
+  <!-- ── CTA ───────────────────────────────────────────────────────────── -->
+  <PageSection heading={about.cta.heading}>
+    <p class="text-base leading-relaxed text-brand-text max-w-2xl">
+      {about.cta.body}
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      {ctaLinks.map(link => (
+        <a
+          href={link!.url}
+          class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-border bg-brand-surface text-sm text-brand-text font-medium hover:border-brand-accent hover:text-brand-accent transition-colors"
+        >
+          {link!.label} →
+        </a>
+      ))}
+    </div>
+  </PageSection>
+
 </BaseLayout>
