@@ -90,6 +90,24 @@ export interface Language {
   proficiency: "fluent" | "intermediate" | "beginner";
 }
 
+// ─── About ───────────────────────────────────────────────────────────────────
+
+export interface AboutContent {
+  /** 2–4 narrative paragraphs introducing who Daniel is */
+  intro: string[];
+  /** 1–2 sentences on current focus / exploration */
+  currentlyExploring: string;
+  /** 1 sentence on off-the-clock life */
+  offTheClock: string;
+  /** Short CTA heading + body line */
+  cta: {
+    heading: string;
+    body: string;
+  };
+  /** Labels from profile.links to surface in the CTA (e.g. ["Email", "LinkedIn", "X"]) */
+  ctaLinkLabels: string[];
+}
+
 // ─── Top-level Profile ───────────────────────────────────────────────────────
 
 export interface Profile {
@@ -107,6 +125,7 @@ export interface Profile {
   projects: Project[];
   hobbies: Hobby[];
   languages: Language[];
+  about: AboutContent;
 }
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -309,4 +328,21 @@ export const profile: Profile = {
     { name: "Hebrew", proficiency: "fluent" },
     { name: "Spanish", proficiency: "intermediate" },
   ],
+
+  about: {
+    intro: [
+      "I'm a product leader who has spent the last seven years building at the intersection of crypto infrastructure and DeFi. I've shipped relayers, vault protocols, lending markets, and developer tooling — usually as the first PM or head of product, working from zero to launched.",
+      "Before crypto, I was a quantitative analyst and an investment analyst in VC. Before that, I served as a Staff Sergeant in the IDF Special Forces. I studied Computer Science at Columbia, graduating Cum Laude in 2018.",
+      "I care about building things that actually get used — products that reduce friction for developers and unlock real economic activity on-chain.",
+    ],
+    currentlyExploring:
+      "Right now I'm thinking a lot about how AI changes the surface area of what one person can build, and where that intersects with crypto rails.",
+    offTheClock:
+      "When I'm not at a screen I'm usually in the water surfing, on a run, or at the piano.",
+    cta: {
+      heading: "Let's talk",
+      body:    "I'm always happy to connect about product, DeFi infrastructure, or anything at the crypto × AI edge.",
+    },
+    ctaLinkLabels: ["Email", "LinkedIn", "X"],
+  },
 };
