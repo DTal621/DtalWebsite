@@ -1,5 +1,6 @@
 ---
 import type { Role } from '../data/profile';
+import ArticleCard from './ArticleCard.astro';
 
 interface Props {
   role: Role;
@@ -34,5 +35,19 @@ const { role } = Astro.props;
       </li>
     ))}
   </ul>
+
+  <!-- Featured writing / coverage — only when the role has articles -->
+  {role.articles && role.articles.length > 0 && (
+    <div class="mt-6 pt-5 border-t border-border">
+      <h4 class="font-mono text-xs lowercase tracking-widest text-muted mb-4">
+        writing &amp; coverage
+      </h4>
+      <div class="flex flex-col gap-4">
+        {role.articles.map(article => (
+          <ArticleCard article={article} />
+        ))}
+      </div>
+    </div>
+  )}
 
 </article>

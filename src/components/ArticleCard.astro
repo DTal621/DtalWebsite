@@ -1,0 +1,75 @@
+---
+import type { RoleArticle } from '../data/profile';
+
+interface Props {
+  article: RoleArticle;
+}
+
+const { article } = Astro.props;
+---
+
+<a
+  href={article.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group block bg-surface border border-border rounded-xl overflow-hidden hover:border-accent motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5"
+>
+  <div class="flex flex-col sm:flex-row">
+
+    <!-- Preview image -->
+    <div class="sm:w-2/5 shrink-0 bg-bg border-b sm:border-b-0 sm:border-r border-border">
+      <img
+        src={article.image}
+        alt={article.title}
+        loading="lazy"
+        class="w-full h-full object-cover aspect-[16/10]"
+      />
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 p-5 flex flex-col gap-3">
+
+      <!-- source · date · reading time + external icon -->
+      <div class="flex items-start justify-between gap-2">
+        <span class="font-mono text-xs lowercase tracking-wide text-muted">
+          {article.source} &middot; {article.date} &middot; {article.readingTime}
+        </span>
+        <svg
+          width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="shrink-0 mt-0.5 text-muted group-hover:text-accent motion-safe:transition-colors"
+          aria-hidden="true"
+        >
+          <path d="M7 17L17 7M17 7H7M17 7V17"/>
+        </svg>
+      </div>
+
+      <!-- title -->
+      <h4 class="font-display text-base font-medium text-text group-hover:text-accent motion-safe:transition-colors leading-snug">
+        {article.title}
+      </h4>
+
+      <!-- summary -->
+      <p class="font-sans text-sm text-muted leading-relaxed">
+        {article.summary}
+      </p>
+
+      <!-- highlight stat chip -->
+      <span class="self-start font-mono text-xs px-2.5 py-1 rounded-md bg-accent/10 text-accent border border-accent/20">
+        {article.highlight}
+      </span>
+
+      <!-- tags -->
+      {article.tags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5">
+          {article.tags.map(tag => (
+            <span class="font-mono text-xs lowercase px-2 py-0.5 rounded border border-border text-muted">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+    </div>
+  </div>
+</a>
