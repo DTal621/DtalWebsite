@@ -19,13 +19,26 @@ export interface RoleAchievement {
   text: string;
 }
 
+export interface RoleArticle {
+  title: string;
+  source: string;
+  url: string;
+  date: string;
+  readingTime: string;
+  summary: string;
+  highlight: string; // small accent stat chip, e.g. "45.2% return · 5.07 Sharpe"
+  image: string;     // local path, e.g. "/articles/iknow-day-trading.png"
+  tags: string[];
+}
+
 export interface Role {
   title: string;
   org: string;
   location: string;
   period: string;
   achievements: RoleAchievement[];
-  links?: Link[]; // e.g. { label: "Launch post", url: "https://..." }
+  links?: Link[];          // e.g. { label: "Launch post", url: "https://..." }
+  articles?: RoleArticle[]; // featured writing / coverage cards
 }
 
 // ─── Community ───────────────────────────────────────────────────────────────
@@ -236,6 +249,20 @@ export const profile: Profile = {
         { text: "+10% on proprietary forecasting algorithm" },
       ],
       links: [],
+      articles: [
+        {
+          title: "Day Trading Strategy: An In-Depth Analysis of Realistic Back-Tests",
+          source: "I Know First",
+          url: "https://iknowfirst.com/day-trading-strategy",
+          date: "Feb 2019",
+          readingTime: "6 min read",
+          summary:
+            "Backtesting an I Know First trading strategy in Quantopian with realistic slippage and commissions, then layering an intraday mean-reversion rule to push returns from 30.5% to 45.2%.",
+          highlight: "45.2% return · 5.07 Sharpe",
+          image: "/articles/iknow-day-trading.png",
+          tags: ["algorithmic trading", "backtesting", "quantopian"],
+        },
+      ],
     },
     {
       title: "Investment Intern",
