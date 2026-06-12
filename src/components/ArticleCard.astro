@@ -19,12 +19,23 @@ const { article } = Astro.props;
     <!-- Preview: image when provided, otherwise a designed fallback motif -->
     <div class="sm:w-2/5 shrink-0 bg-bg border-b sm:border-b-0 sm:border-r border-border">
       {article.image ? (
-        <img
-          src={article.image}
-          alt={article.title}
-          loading="lazy"
-          class="w-full h-full object-cover aspect-[16/10]"
-        />
+        article.imageFit === 'contain' ? (
+          <div class="w-full h-full aspect-[16/10] flex items-center justify-center p-6 bg-surface">
+            <img
+              src={article.image}
+              alt={article.title}
+              loading="lazy"
+              class="max-w-[70%] max-h-[60%] object-contain"
+            />
+          </div>
+        ) : (
+          <img
+            src={article.image}
+            alt={article.title}
+            loading="lazy"
+            class="w-full h-full object-cover aspect-[16/10]"
+          />
+        )
       ) : (
         <div class="w-full h-full aspect-[16/10] flex items-center justify-center bg-accent/5">
           <svg

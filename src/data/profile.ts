@@ -28,6 +28,7 @@ export interface RoleArticle {
   summary: string;
   highlight: string;  // small accent stat chip, e.g. "45.2% return · 5.07 Sharpe"
   image?: string;     // local path, e.g. "/articles/iknow-day-trading.png"; omit for designed fallback
+  imageFit?: 'cover' | 'contain'; // 'cover' = full-bleed photo (default); 'contain' = centered logo
   tags: string[];
 }
 
@@ -229,12 +230,27 @@ export const profile: Profile = {
       location: "New York",
       period: "Oct 2018 – Feb 2021",
       achievements: [
-        { text: "Blockchain VS Code extension — 60K+ installs" },
-        { text: "CodeReady Workspaces live in 3 months" },
-        { text: "Competitive analysis used in 80% of winning deals" },
-        { text: "+31% adoption via GTM and pricing improvements" },
-        { text: "Top NPS across IBM Hybrid Cloud (Jul 2020)" },
-        { text: "Accelerator mentor" },
+        {
+          text: "Owned market strategy and development of the IBM Blockchain VS Code extension installed by over 60,000 developers",
+        },
+        {
+          text: "Spearheaded development team building Red Hat integrations, bringing the CodeReady Workspaces product to market within three months enabling remote IDE access and simplifying cross-geo team functionality",
+        },
+        {
+          text: "Led blockchain competitive analysis across global IBM teams encompassing running hour-long monthly enablement calls and building competitive market resources used in over 80% of deal-winning client engagements",
+        },
+        {
+          text: "Headed development lifecycle of open source integrations including bringing IBM Blockchain Platform’s Ansible collections for automating infrastructure creation to market within a quarter",
+        },
+        {
+          text: "Created a go-to-market strategy and financial models to competitively price the blockchain platform leading to wider adoption of the product including initial adoption increases of 31%",
+        },
+        {
+          text: "Owned the Client Feedback Loop across Blockchain Platform deployments, retaining the highest Net Promoter Score (NPS) across all IBM Hybrid Cloud products in July 2020",
+        },
+        {
+          text: "Mentor at IBM Blockchain Accelerator: discovered promising early stage founders and companies from leading NYC universities, interviewed and onboarded teams, and helped them develop their technology stack and business model",
+        },
       ],
       links: [],
       articles: [
@@ -247,6 +263,8 @@ export const profile: Profile = {
           summary:
             "An Everest Group report on managed blockchain services positions IBM at the summit of enterprise blockchain-as-a-service providers, alongside Microsoft and ahead of AWS, Oracle, and Alibaba Cloud.",
           highlight: "Leader — Everest Group",
+          image: "/articles/blockchain-tech-news.png",
+          imageFit: "contain",
           tags: ["enterprise blockchain", "baas", "analyst report"],
         },
         {
@@ -258,6 +276,8 @@ export const profile: Profile = {
           summary:
             "The IBM Blockchain Platform won a 2019 Red Dot Award in the interface design category for an experience that demystifies blockchain for enterprise developers and network operators new to the technology.",
           highlight: "2019 Red Dot Award",
+          image: "/articles/ibm-logo.svg",
+          imageFit: "contain",
           tags: ["product design", "ux", "blockchain platform"],
         },
       ],
@@ -270,9 +290,14 @@ export const profile: Profile = {
       period: "Jun 2016 – Aug 2016",
       achievements: [
         {
-          text: "Day-trading strategy improved returns from 30.5% to 45.2% over 8 months",
+          text: "Implemented dominant day-trading strategies, utilizing both bullish and bearish positions, to increase client portfolio returns from 30.5% to 45.2% over an eight-month simulation period",
         },
-        { text: "+10% on proprietary forecasting algorithm" },
+        {
+          text: "Analyzed proprietary stock predicting algorithm’s performance and implemented strategy to increase it by over 10%",
+        },
+        {
+          text: "Evaluated hourly trading strategies, taking into account slippage and commission on individual securities to strengthen long-term portfolio success through personalized schedule functions",
+        },
         {
           text: "Simulated market forecast models that statistically evaluate daily investment scenarios using Quantopian",
         },
