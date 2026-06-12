@@ -26,8 +26,8 @@ export interface RoleArticle {
   date: string;
   readingTime: string;
   summary: string;
-  highlight: string; // small accent stat chip, e.g. "45.2% return · 5.07 Sharpe"
-  image: string;     // local path, e.g. "/articles/iknow-day-trading.png"
+  highlight: string;  // small accent stat chip, e.g. "45.2% return · 5.07 Sharpe"
+  image?: string;     // local path, e.g. "/articles/iknow-day-trading.png"; omit for designed fallback
   tags: string[];
 }
 
@@ -39,6 +39,7 @@ export interface Role {
   achievements: RoleAchievement[];
   links?: Link[];          // e.g. { label: "Launch post", url: "https://..." }
   articles?: RoleArticle[]; // featured writing / coverage cards
+  articlesLabel?: string;   // subsection heading; defaults to "writing & coverage"
 }
 
 // ─── Community ───────────────────────────────────────────────────────────────
@@ -236,6 +237,31 @@ export const profile: Profile = {
         { text: "Accelerator mentor" },
       ],
       links: [],
+      articles: [
+        {
+          title: "Everest Group enterprise managed blockchain analysis places IBM and Microsoft at the summit",
+          source: "Blockchain Tech News",
+          url: "https://blockchaintechnology-news.com/news/everest-group-enterprise-managed-blockchain-analysis-places-ibm-and-microsoft-at-the-summit/",
+          date: "Jan 2020",
+          readingTime: "4 min read",
+          summary:
+            "An Everest Group report on managed blockchain services positions IBM at the summit of enterprise blockchain-as-a-service providers, alongside Microsoft and ahead of AWS, Oracle, and Alibaba Cloud.",
+          highlight: "Leader — Everest Group",
+          tags: ["enterprise blockchain", "baas", "analyst report"],
+        },
+        {
+          title: "IBM Cloud wins a 2019 Red Dot Design Award for the IBM Blockchain Platform",
+          source: "IBM Design",
+          url: "https://medium.com/design-ibm/ibm-cloud-wins-a-2019-red-dot-design-award-for-the-ibm-blockchain-platform-62ac3fd3db3e",
+          date: "Aug 2019",
+          readingTime: "5 min read",
+          summary:
+            "The IBM Blockchain Platform won a 2019 Red Dot Award in the interface design category for an experience that demystifies blockchain for enterprise developers and network operators new to the technology.",
+          highlight: "2019 Red Dot Award",
+          tags: ["product design", "ux", "blockchain platform"],
+        },
+      ],
+      articlesLabel: "coverage",
     },
     {
       title: "Quantitative Analyst",
@@ -266,6 +292,7 @@ export const profile: Profile = {
           tags: ["algorithmic trading", "backtesting", "quantopian"],
         },
       ],
+      articlesLabel: "writing",
     },
     {
       title: "Investment Intern",
@@ -298,6 +325,7 @@ export const profile: Profile = {
           tags: ["venture capital", "equity crowdfunding", "fintech"],
         },
       ],
+      articlesLabel: "coverage",
     },
   ],
 

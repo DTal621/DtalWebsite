@@ -16,14 +16,31 @@ const { article } = Astro.props;
 >
   <div class="flex flex-col sm:flex-row">
 
-    <!-- Preview image -->
+    <!-- Preview: image when provided, otherwise a designed fallback motif -->
     <div class="sm:w-2/5 shrink-0 bg-bg border-b sm:border-b-0 sm:border-r border-border">
-      <img
-        src={article.image}
-        alt={article.title}
-        loading="lazy"
-        class="w-full h-full object-cover aspect-[16/10]"
-      />
+      {article.image ? (
+        <img
+          src={article.image}
+          alt={article.title}
+          loading="lazy"
+          class="w-full h-full object-cover aspect-[16/10]"
+        />
+      ) : (
+        <div class="w-full h-full aspect-[16/10] flex items-center justify-center bg-accent/5">
+          <svg
+            viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"
+            class="w-2/5 text-accent/70" aria-hidden="true"
+          >
+            <path d="M4 36 L4 4" />
+            <path d="M4 36 L60 36" />
+            <path d="M10 28 L24 18 L36 24 L56 8" />
+            <circle cx="24" cy="18" r="1.5" fill="currentColor" />
+            <circle cx="36" cy="24" r="1.5" fill="currentColor" />
+            <circle cx="56" cy="8" r="1.5" fill="currentColor" />
+          </svg>
+        </div>
+      )}
     </div>
 
     <!-- Content -->
