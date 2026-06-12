@@ -247,6 +247,9 @@ export const profile: Profile = {
           text: "Day-trading strategy improved returns from 30.5% to 45.2% over 8 months",
         },
         { text: "+10% on proprietary forecasting algorithm" },
+        {
+          text: "Simulated market forecast models that statistically evaluate daily investment scenarios using Quantopian",
+        },
       ],
       links: [],
       articles: [
@@ -270,11 +273,31 @@ export const profile: Profile = {
       location: "New York",
       period: "Nov 2014 – Apr 2015",
       achievements: [
-        { text: "Due diligence on early-stage fintech teams" },
-        { text: "Investor ranking reports for US expansion" },
-        { text: "Quarterly portfolio reporting" },
+        {
+          text: "Conducted due diligence on promising fintech-focused, early-stage teams based in Israel and NYC",
+        },
+        {
+          text: "Developed investor ranking reports and new rolodex for US investor expansion as first intern in the NYC office",
+        },
+        {
+          text: "Prepared quarterly reports for portfolio companies providing analytics and suggested market opportunities",
+        },
       ],
       links: [],
+      articles: [
+        {
+          title: "Equity-crowdfunding platform OurCrowd raises $25M",
+          source: "VatorNews",
+          url: "https://vator.tv/2014-04-28-equity-crowdfunding-platform-ourcrowd-raises-25m/",
+          date: "Apr 2014",
+          readingTime: "3 min read",
+          summary:
+            "Coverage of OurCrowd's $25M Series B round to expand its equity-crowdfunding platform globally, having already facilitated $43M across 36 portfolio companies in 26 countries.",
+          highlight: "$25M Series B",
+          image: "/articles/ourcrowd-raise.jpg",
+          tags: ["venture capital", "equity crowdfunding", "fintech"],
+        },
+      ],
     },
   ],
 
