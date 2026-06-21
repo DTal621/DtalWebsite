@@ -1,12 +1,18 @@
 ---
 import type { Role } from '../data/profile';
-import ArticleCard from './ArticleCard.astro';
+import ArticleCarousel from './ArticleCarousel.astro';
 
 interface Props {
   role: Role;
 }
 
 const { role } = Astro.props;
+
+// Media sections ("Talks & Media") always come first, before other sections.
+const isMedia = (label: string) => /talk|media/i.test(label);
+const sections = [...(role.articleSections ?? [])].sort(
+  (a, b) => Number(isMedia(b.label)) - Number(isMedia(a.label))
+);
 ---
 
 <article class="bg-surface border border-border rounded-xl p-6">
@@ -36,18 +42,14 @@ const { role } = Astro.props;
     ))}
   </ul>
 
-  <!-- Labeled article/media sections — one block per section -->
-  {role.articleSections?.map(section => (
+  <!-- Labeled article/media sections — media first; one card visible, slider for the rest -->
+  {sections.map(section => (
     section.articles.length > 0 && (
       <div class="mt-6 pt-5 border-t border-border">
         <h4 class="font-mono text-xs lowercase tracking-widest text-muted mb-4">
           {section.label}
         </h4>
-        <div class="flex flex-col gap-4">
-          {section.articles.map(article => (
-            <ArticleCard article={article} />
-          ))}
-        </div>
+        <ArticleCarousel articles={section.articles} />
       </div>
     )
   ))}
