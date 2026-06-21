@@ -36,18 +36,20 @@ const { role } = Astro.props;
     ))}
   </ul>
 
-  <!-- Featured writing / coverage — only when the role has articles -->
-  {role.articles && role.articles.length > 0 && (
-    <div class="mt-6 pt-5 border-t border-border">
-      <h4 class="font-mono text-xs lowercase tracking-widest text-muted mb-4">
-        {role.articlesLabel ?? 'writing & coverage'}
-      </h4>
-      <div class="flex flex-col gap-4">
-        {role.articles.map(article => (
-          <ArticleCard article={article} />
-        ))}
+  <!-- Labeled article/media sections — one block per section -->
+  {role.articleSections?.map(section => (
+    section.articles.length > 0 && (
+      <div class="mt-6 pt-5 border-t border-border">
+        <h4 class="font-mono text-xs lowercase tracking-widest text-muted mb-4">
+          {section.label}
+        </h4>
+        <div class="flex flex-col gap-4">
+          {section.articles.map(article => (
+            <ArticleCard article={article} />
+          ))}
+        </div>
       </div>
-    </div>
-  )}
+    )
+  ))}
 
 </article>

@@ -23,13 +23,19 @@ export interface RoleArticle {
   title: string;
   source: string;
   url: string;
-  date: string;
-  readingTime: string;
+  date?: string;       // optional — omit when unknown
+  readingTime?: string; // optional — e.g. "6 min read"; omit for videos
   summary: string;
-  highlight: string;  // small accent stat chip, e.g. "45.2% return · 5.07 Sharpe"
+  highlight: string;  // small accent chip, e.g. "45.2% return · 5.07 Sharpe" or "Conference talk"
   image?: string;     // local path, e.g. "/articles/iknow-day-trading.png"; omit for designed fallback
   imageFit?: 'cover' | 'contain'; // 'cover' = full-bleed photo (default); 'contain' = centered logo
   tags: string[];
+}
+
+/** A labeled group of article/media cards under a role (e.g. "coverage", "Talks & Media"). */
+export interface ArticleSection {
+  label: string;
+  articles: RoleArticle[];
 }
 
 export interface Role {
@@ -38,9 +44,8 @@ export interface Role {
   location: string;
   period: string;
   achievements: RoleAchievement[];
-  links?: Link[];          // e.g. { label: "Launch post", url: "https://..." }
-  articles?: RoleArticle[]; // featured writing / coverage cards
-  articlesLabel?: string;   // subsection heading; defaults to "writing & coverage"
+  links?: Link[];                    // e.g. { label: "Launch post", url: "https://..." }
+  articleSections?: ArticleSection[]; // one or more labeled card groups
 }
 
 // ─── Community ───────────────────────────────────────────────────────────────
@@ -238,6 +243,33 @@ export const profile: Profile = {
         },
       ],
       links: [],
+      articleSections: [
+        {
+          label: "Talks & Media",
+          articles: [
+            {
+              title: "Daniel Tal, Network Steward at ICHI — Community Based DeFi",
+              source: "Blockchain Interviews",
+              url: "https://www.youtube.com/watch?v=if8sj9PCcfU&t=23s",
+              summary:
+                "Interview on building community-based DeFi at ICHI — community-backed stablecoins, Uniswap v3 vaults, and decentralizing liquidity ownership.",
+              highlight: "Interview",
+              image: "/articles/talk-ichi-community-defi.jpg",
+              tags: ["defi", "ichi", "interview"],
+            },
+            {
+              title: "Creating truly decentralized DeFi",
+              source: "BlockSplit Conference",
+              url: "https://www.youtube.com/watch?v=smhrGEHg1Zk",
+              summary:
+                "Conference talk on the path to genuinely decentralized DeFi — protocol-owned liquidity, community governance, and the design tradeoffs along the way.",
+              highlight: "Conference talk",
+              image: "/articles/talk-decentralized-defi.jpg",
+              tags: ["defi", "conference", "decentralization"],
+            },
+          ],
+        },
+      ],
     },
     {
       title: "Product Manager",
@@ -268,35 +300,54 @@ export const profile: Profile = {
         },
       ],
       links: [],
-      articles: [
+      articleSections: [
         {
-          title: "Everest Group enterprise managed blockchain analysis places IBM and Microsoft at the summit",
-          source: "Blockchain Tech News",
-          url: "https://blockchaintechnology-news.com/news/everest-group-enterprise-managed-blockchain-analysis-places-ibm-and-microsoft-at-the-summit/",
-          date: "Jan 2020",
-          readingTime: "4 min read",
-          summary:
-            "An Everest Group report on managed blockchain services positions IBM at the summit of enterprise blockchain-as-a-service providers, alongside Microsoft and ahead of AWS, Oracle, and Alibaba Cloud.",
-          highlight: "Leader — Everest Group",
-          image: "/articles/blockchain-tech-news.png",
-          imageFit: "contain",
-          tags: ["enterprise blockchain", "baas", "analyst report"],
+          label: "coverage",
+          articles: [
+            {
+              title: "Everest Group enterprise managed blockchain analysis places IBM and Microsoft at the summit",
+              source: "Blockchain Tech News",
+              url: "https://blockchaintechnology-news.com/news/everest-group-enterprise-managed-blockchain-analysis-places-ibm-and-microsoft-at-the-summit/",
+              date: "Jan 2020",
+              readingTime: "4 min read",
+              summary:
+                "An Everest Group report on managed blockchain services positions IBM at the summit of enterprise blockchain-as-a-service providers, alongside Microsoft and ahead of AWS, Oracle, and Alibaba Cloud.",
+              highlight: "Leader — Everest Group",
+              image: "/articles/blockchain-tech-news.png",
+              imageFit: "contain",
+              tags: ["enterprise blockchain", "baas", "analyst report"],
+            },
+            {
+              title: "IBM Cloud wins a 2019 Red Dot Design Award for the IBM Blockchain Platform",
+              source: "IBM Design",
+              url: "https://medium.com/design-ibm/ibm-cloud-wins-a-2019-red-dot-design-award-for-the-ibm-blockchain-platform-62ac3fd3db3e",
+              date: "Aug 2019",
+              readingTime: "5 min read",
+              summary:
+                "The IBM Blockchain Platform won a 2019 Red Dot Award in the interface design category for an experience that demystifies blockchain for enterprise developers and network operators new to the technology.",
+              highlight: "2019 Red Dot Award",
+              image: "/articles/ibm-logo.svg",
+              imageFit: "contain",
+              tags: ["product design", "ux", "blockchain platform"],
+            },
+          ],
         },
         {
-          title: "IBM Cloud wins a 2019 Red Dot Design Award for the IBM Blockchain Platform",
-          source: "IBM Design",
-          url: "https://medium.com/design-ibm/ibm-cloud-wins-a-2019-red-dot-design-award-for-the-ibm-blockchain-platform-62ac3fd3db3e",
-          date: "Aug 2019",
-          readingTime: "5 min read",
-          summary:
-            "The IBM Blockchain Platform won a 2019 Red Dot Award in the interface design category for an experience that demystifies blockchain for enterprise developers and network operators new to the technology.",
-          highlight: "2019 Red Dot Award",
-          image: "/articles/ibm-logo.svg",
-          imageFit: "contain",
-          tags: ["product design", "ux", "blockchain platform"],
+          label: "Talks & Media",
+          articles: [
+            {
+              title: "Bio Break with Daniel Tal",
+              source: "IBM Blockchain",
+              url: "https://www.youtube.com/watch?v=Goc8RQYpXNM",
+              summary:
+                "A fireside-style conversation on enterprise blockchain product work at IBM — developer tooling, the IBM Blockchain Platform, and lessons from taking it to market.",
+              highlight: "Fireside chat",
+              image: "/articles/talk-ibm-bio-break.jpg",
+              tags: ["ibm", "enterprise blockchain", "fireside"],
+            },
+          ],
         },
       ],
-      articlesLabel: "coverage",
     },
     {
       title: "Quantitative Analyst",
@@ -318,21 +369,25 @@ export const profile: Profile = {
         },
       ],
       links: [],
-      articles: [
+      articleSections: [
         {
-          title: "Day Trading Strategy: An In-Depth Analysis of Realistic Back-Tests",
-          source: "I Know First",
-          url: "https://iknowfirst.com/day-trading-strategy",
-          date: "Feb 2019",
-          readingTime: "6 min read",
-          summary:
-            "Backtesting an I Know First trading strategy in Quantopian with realistic slippage and commissions, then layering an intraday mean-reversion rule to push returns from 30.5% to 45.2%.",
-          highlight: "45.2% return · 5.07 Sharpe",
-          image: "/articles/iknow-day-trading.png",
-          tags: ["algorithmic trading", "backtesting", "quantopian"],
+          label: "writing",
+          articles: [
+            {
+              title: "Day Trading Strategy: An In-Depth Analysis of Realistic Back-Tests",
+              source: "I Know First",
+              url: "https://iknowfirst.com/day-trading-strategy",
+              date: "Feb 2019",
+              readingTime: "6 min read",
+              summary:
+                "Backtesting an I Know First trading strategy in Quantopian with realistic slippage and commissions, then layering an intraday mean-reversion rule to push returns from 30.5% to 45.2%.",
+              highlight: "45.2% return · 5.07 Sharpe",
+              image: "/articles/iknow-day-trading.png",
+              tags: ["algorithmic trading", "backtesting", "quantopian"],
+            },
+          ],
         },
       ],
-      articlesLabel: "writing",
     },
     {
       title: "Investment Intern",
@@ -351,21 +406,25 @@ export const profile: Profile = {
         },
       ],
       links: [],
-      articles: [
+      articleSections: [
         {
-          title: "Equity-crowdfunding platform OurCrowd raises $25M",
-          source: "VatorNews",
-          url: "https://vator.tv/2014-04-28-equity-crowdfunding-platform-ourcrowd-raises-25m/",
-          date: "Apr 2014",
-          readingTime: "3 min read",
-          summary:
-            "Coverage of OurCrowd's $25M Series B round to expand its equity-crowdfunding platform globally, having already facilitated $43M across 36 portfolio companies in 26 countries.",
-          highlight: "$25M Series B",
-          image: "/articles/ourcrowd-raise.jpg",
-          tags: ["venture capital", "equity crowdfunding", "fintech"],
+          label: "coverage",
+          articles: [
+            {
+              title: "Equity-crowdfunding platform OurCrowd raises $25M",
+              source: "VatorNews",
+              url: "https://vator.tv/2014-04-28-equity-crowdfunding-platform-ourcrowd-raises-25m/",
+              date: "Apr 2014",
+              readingTime: "3 min read",
+              summary:
+                "Coverage of OurCrowd's $25M Series B round to expand its equity-crowdfunding platform globally, having already facilitated $43M across 36 portfolio companies in 26 countries.",
+              highlight: "$25M Series B",
+              image: "/articles/ourcrowd-raise.jpg",
+              tags: ["venture capital", "equity crowdfunding", "fintech"],
+            },
+          ],
         },
       ],
-      articlesLabel: "coverage",
     },
   ],
 
