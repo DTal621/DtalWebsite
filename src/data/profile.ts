@@ -185,19 +185,25 @@ export const profile: Profile = {
   roles: [
     {
       title: "Product Lead",
-      org: "xLabs (Wormhole core-contributor)",
+      org: "xLabs / Wormhole",
       location: "Remote",
       period: "Jul 2024 – Present",
       achievements: [
-        { text: "Validator business on 6 chains — $40M+ AuM in 120 days" },
         {
-          text: "Authored the Wormhole NTT playbook, cutting partner onboarding by 73%",
+          text: "Owned product strategy of validator business launching on 6 chains, locking in $40M+ AuM in first 120 days",
         },
-        { text: "Integrated Threshold Signature Scheme — 95% gas reduction" },
         {
-          text: "Built relayer concept-to-launch: −50% wallets maintained, −80% at-risk funds",
+          text: "Authored Wormhole NTT playbook, a standardized framework cutting new partner onboarding by 73%",
         },
-        { text: "Portal bridge asset onboarding — 70+ listings" },
+        {
+          text: "Integrated Threshold Signature Scheme into Wormhole in 6 months, cut 95% of gas costs for cross-chain txs",
+        },
+        {
+          text: "Spearheaded relayer build (concept to launch), reduced wallets maintained by 50% and at risk funds by 80%",
+        },
+        {
+          text: "Led asset onboarding for Portal bridge adding 70+ new token listings",
+        },
       ],
       links: [
         // { label: "Launch post", url: "https://..." },
@@ -210,17 +216,26 @@ export const profile: Profile = {
       period: "Mar 2021 – Aug 2023",
       achievements: [
         {
-          text: "Built Uniswap v3 vault product idea-to-launch — 40+ vaults, $100M+ locked",
-        },
-        { text: "Rari lending market — $600M+ AuM" },
-        {
-          text: "10+ community stablecoins with Chainlink / Uniswap / ShapeShift — $80M+ market cap",
+          text: "Built vault product (Uniswap v3 liquidity management system focused on minimizing IL) from idea to launch",
         },
         {
-          text: "Raised $2M+ in grants across Solana, Moonbeam, Polygon, and Flow",
+          text: "Launched 40+ ICHI Vaults with partner companies/DAOs locking in over $100M in tokens",
         },
-        { text: "+32% MoM deposits via UX redesign" },
-        { text: "Led 4 BD hires" },
+        {
+          text: "Implemented a lending market on Rari Capital with AuM reaching $600M+ (2nd largest at the time)",
+        },
+        {
+          text: "Built 10+ community-backed stablecoins with crypto teams (Chainlink, Uniswap, Shapeshift), m. cap of $80M+",
+        },
+        {
+          text: "Raised $2M+ in grants from Solana, Moonbeam, Polygon, and Flow to launch ICHI stablecoins on their L1s",
+        },
+        {
+          text: "Redesigned UX/UI on app.ichi.org increasing deposits by 32% MoM",
+        },
+        {
+          text: "Led team of 4 BDs in crypto growth strategy focused on foundation forums, Discord, Telegram",
+        },
       ],
       links: [],
     },
