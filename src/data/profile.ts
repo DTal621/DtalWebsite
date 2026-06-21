@@ -267,6 +267,17 @@ export const profile: Profile = {
               image: "/articles/talk-decentralized-defi.jpg",
               tags: ["defi", "conference", "decentralization"],
             },
+            {
+              title: "Synopsis Web3 Summit — Edition 4, Day 3",
+              source: "Synopsis Web3 Summit",
+              url: "https://www.youtube.com/watch?v=1kGmpbjrkHg&t=6630s",
+              date: "2022",
+              summary:
+                "Panel appearance at the Synopsis Web3 Summit (Daniel's segment begins at 1:50:30) — a deep dive on building in DeFi and the road to decentralization.",
+              highlight: "Conference panel",
+              image: "/articles/talk-synopsis-web3.jpg",
+              tags: ["defi", "web3", "summit"],
+            },
           ],
         },
       ],
@@ -336,14 +347,14 @@ export const profile: Profile = {
           label: "Talks & Media",
           articles: [
             {
-              title: "Bio Break with Daniel Tal",
+              title: "IBM Blockchain 101 for Developers",
               source: "IBM Blockchain",
-              url: "https://www.youtube.com/watch?v=Goc8RQYpXNM",
+              url: "https://www.youtube.com/watch?v=Jwtl2yA5IoM",
               summary:
-                "A fireside-style conversation on enterprise blockchain product work at IBM — developer tooling, the IBM Blockchain Platform, and lessons from taking it to market.",
-              highlight: "Fireside chat",
-              image: "/articles/talk-ibm-bio-break.jpg",
-              tags: ["ibm", "enterprise blockchain", "fireside"],
+                "A developer-focused primer on building with IBM Blockchain — core concepts, the platform, and how teams get started shipping on enterprise blockchain.",
+              highlight: "Developer talk",
+              image: "/articles/talk-ibm-blockchain-101.jpg",
+              tags: ["ibm", "enterprise blockchain", "developers"],
             },
           ],
         },
