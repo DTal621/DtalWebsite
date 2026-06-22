@@ -278,6 +278,16 @@ export const profile: Profile = {
               image: "/articles/talk-synopsis-web3.jpg",
               tags: ["defi", "web3", "summit"],
             },
+            {
+              title: "Constructing Robust DAOs: Best Practices and Strategies",
+              source: "EAK TV",
+              url: "https://www.youtube.com/watch?v=hrbA7gCXFAM",
+              summary:
+                "Conversation on designing resilient DAOs — governance structures, community incentives, and practical strategies drawn from building ICHI.",
+              highlight: "Interview",
+              image: "/articles/talk-robust-daos.jpg",
+              tags: ["dao", "governance", "ichi"],
+            },
           ],
         },
       ],
