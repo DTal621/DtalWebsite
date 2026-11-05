@@ -32,6 +32,25 @@ const sections = [...(role.articleSections ?? [])].sort(
     {role.org} &middot; {role.location}
   </p>
 
+  <!-- By the numbers -->
+  {role.numbers && role.numbers.length > 0 && (
+    <div class="mt-5 grid grid-cols-3 gap-4">
+      {role.numbers.map(n => (
+        <div class="flex flex-col gap-1">
+          <span
+            class="font-mono text-xl sm:text-2xl font-medium text-accent leading-none"
+            data-count-up={n.value}
+          >
+            {n.value}
+          </span>
+          <span class="font-mono text-[0.7rem] leading-snug lowercase text-muted">
+            {n.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  )}
+
   <!-- Achievements -->
   <ul class="mt-4 space-y-2">
     {role.achievements.map(a => (
@@ -55,3 +74,8 @@ const sections = [...(role.articleSections ?? [])].sort(
   ))}
 
 </article>
+
+<script>
+  import { initCountUp } from '../scripts/motion';
+  initCountUp();
+</script>

@@ -19,6 +19,12 @@ export interface RoleAchievement {
   text: string;
 }
 
+/** Compact headline number for a role's "by the numbers" row. */
+export interface RoleStat {
+  value: string; // e.g. "$40M+", "73%", "5.07" — count-up animates to this
+  label: string; // short mono caption, e.g. "AuM · 120 days"
+}
+
 export interface RoleArticle {
   title: string;
   source: string;
@@ -43,6 +49,7 @@ export interface Role {
   org: string;
   location: string;
   period: string;
+  numbers?: RoleStat[];               // compact "by the numbers" row (3 ideal)
   achievements: RoleAchievement[];
   links?: Link[];                    // e.g. { label: "Launch post", url: "https://..." }
   articleSections?: ArticleSection[]; // one or more labeled card groups
@@ -193,6 +200,11 @@ export const profile: Profile = {
       org: "xLabs / Wormhole",
       location: "Remote",
       period: "Jul 2024 – Present",
+      numbers: [
+        { value: "$40M+", label: "AuM · 120 days" },
+        { value: "73%", label: "faster onboarding" },
+        { value: "95%", label: "gas reduction" },
+      ],
       achievements: [
         {
           text: "Owned product strategy of validator business launching on 6 chains, locking in $40M+ AuM in first 120 days",
@@ -219,6 +231,11 @@ export const profile: Profile = {
       org: "DMA Labs / ICHI",
       location: "Remote",
       period: "Mar 2021 – Aug 2023",
+      numbers: [
+        { value: "$600M+", label: "peak AuM" },
+        { value: "40+", label: "vaults · $100M+" },
+        { value: "$2M+", label: "grants raised" },
+      ],
       achievements: [
         {
           text: "Built vault product (Uniswap v3 liquidity management system focused on minimizing IL) from idea to launch",
@@ -297,6 +314,11 @@ export const profile: Profile = {
       org: "IBM Enterprise Blockchain",
       location: "New York",
       period: "Oct 2018 – Feb 2021",
+      numbers: [
+        { value: "60K+", label: "dev installs" },
+        { value: "80%", label: "of won deals" },
+        { value: "+31%", label: "adoption" },
+      ],
       achievements: [
         {
           text: "Owned market strategy and development of the IBM Blockchain VS Code extension installed by over 60,000 developers",
@@ -375,6 +397,11 @@ export const profile: Profile = {
       org: "I Know First",
       location: "Tel Aviv",
       period: "Jun 2016 – Aug 2016",
+      numbers: [
+        { value: "45.2%", label: "sim returns" },
+        { value: "+10%", label: "algo gain" },
+        { value: "5.07", label: "sharpe ratio" },
+      ],
       achievements: [
         {
           text: "Implemented dominant day-trading strategies, utilizing both bullish and bearish positions, to increase client portfolio returns from 30.5% to 45.2% over an eight-month simulation period",
