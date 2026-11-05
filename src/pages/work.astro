@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import PageSection from '../components/PageSection.astro';
 import RoleCard from '../components/RoleCard.astro';
+import CredentialCard from '../components/CredentialCard.astro';
+import CapabilityBar from '../components/CapabilityBar.astro';
 import { profile } from '../data/profile';
 ---
 
@@ -26,6 +28,76 @@ import { profile } from '../data/profile';
         <div data-fade data-delay={i * 80}>
           <RoleCard role={role} />
         </div>
+      ))}
+    </div>
+  </PageSection>
+
+  <!-- ── Skills ────────────────────────────────────────────────────────── -->
+  <PageSection heading="skills">
+    <div class="flex flex-col gap-5">
+      {profile.capabilities.map((cap, i) => (
+        <div data-fade data-delay={i * 50}>
+          <CapabilityBar capability={cap} />
+        </div>
+      ))}
+    </div>
+  </PageSection>
+
+  <!-- ── Education ─────────────────────────────────────────────────────── -->
+  <PageSection heading="education">
+    <div class="flex flex-col gap-5">
+      {profile.education.map((ed, i) => (
+        <div data-fade data-delay={i * 80}>
+          <CredentialCard
+            title={ed.institution}
+            subtitle={`${ed.degree} · ${ed.honors}`}
+            period={String(ed.year)}
+            notes={ed.notes}
+          />
+        </div>
+      ))}
+    </div>
+  </PageSection>
+
+  <!-- ── Military ──────────────────────────────────────────────────────── -->
+  <PageSection heading="military">
+    <div class="flex flex-col gap-5">
+      {profile.military.map((m, i) => (
+        <div data-fade data-delay={i * 80}>
+          <CredentialCard
+            title={m.unit}
+            subtitle={m.rank}
+            period={m.period}
+            notes={m.notes}
+          />
+        </div>
+      ))}
+    </div>
+  </PageSection>
+
+  <!-- ── Community ─────────────────────────────────────────────────────── -->
+  <PageSection heading="community">
+    <div class="flex flex-col gap-5">
+      {profile.community.map((c, i) => (
+        <div data-fade data-delay={i * 80}>
+          <CredentialCard
+            title={c.org}
+            subtitle={c.role}
+            period={c.period}
+            notes={c.achievements.map(a => a.text)}
+          />
+        </div>
+      ))}
+    </div>
+  </PageSection>
+
+  <!-- ── Languages ─────────────────────────────────────────────────────── -->
+  <PageSection heading="languages">
+    <div class="flex flex-wrap gap-2.5" data-fade>
+      {profile.languages.map(lang => (
+        <span class="font-mono text-xs lowercase px-3 py-1.5 rounded-lg border border-border bg-surface text-muted">
+          {lang.name} <span class="text-text/50">· {lang.proficiency}</span>
+        </span>
       ))}
     </div>
   </PageSection>
